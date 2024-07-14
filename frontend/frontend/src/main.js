@@ -2,11 +2,11 @@ import Vue from 'vue';
 // import App from './App';
 import VueRouter from 'vue-router';
 import vueResource from 'vue-resource';
-import Customers from './components/Customers';
+import Customers from './components/CustomersComp';
 import Customerdetails from './components/CustomerDetails';
-import Add from './components/Add';
-import Edit from './components/Edit';
-import About from './components/About';
+import Add from './components/AddComp';
+import Edit from './components/EditComp';
+import About from './components/AboutComp';
 
 Vue.use(vueResource);
 Vue.use(VueRouter);
@@ -49,4 +49,4 @@ new Vue({router, template: `
       <router-view></router-view>
     </div>
   `
-}).$mount("#app")
+}).$mount("#app");

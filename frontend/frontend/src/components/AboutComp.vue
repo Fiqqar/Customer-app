@@ -1,4 +1,3 @@
-/* eslint-disable */
 <template>
     <div class="about container">
         <h1 class="page-header">About</h1>
@@ -9,6 +8,6 @@
 
 <script>
 export default {
-    name: "about"
+    name: "aboutComp"
 }
 </script>

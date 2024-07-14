@@ -1,9 +1,3 @@
-<template>
-    <div id="app">
-        test
-    </div>
-</template>
-
 <script>
 export default {
     name: "app",
@@ -12,3 +6,10 @@ export default {
     },
 }
 </script>
+
+<template>
+    <div id="app">
+        testing
+    </div>
+</template>
+
