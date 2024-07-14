@@ -40,6 +40,10 @@ router.post('/add', (req, res) => {
     });
 });
 
+router.delete('/delete/:id', (req, res) => {
+    item.remove
+}); 
+
 
 
 
