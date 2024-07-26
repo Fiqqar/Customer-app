@@ -30,9 +30,17 @@ export default {
     },
     methods: {
         deletecustomer(id) {
-            this.$http.delete("http://localhost:8080/api/customer/list")
+            this.$http.delete("http://localhost:8080/api/customer/delete/"+ id)
+        },
+        getcustomer (id) {
+            this.$http.get("http://localhost:8080/api/customer/"+ id).then (function(response){
+                this.customer = response.body;
+            });
         }
     },
+    created : function () {
+        this.getcustomer(this.$route.params.id)
+    }
 }
 </script>
 
