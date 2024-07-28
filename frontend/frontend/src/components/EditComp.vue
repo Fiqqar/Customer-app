@@ -48,6 +48,19 @@
 <script>
 import Alert from './AlertComp'
 export default {
-    name: "editComp"
+    name: "editComp",
+    data () {
+        return {
+            alert : "",
+            customer : {}
+        }
+    },
+    methods : {
+        updatecustomer (e) {
+            if (!this.customer.first_name || !this.customer.last_name || !this.customer.email) {
+                this.alert = "Please fill all required fields";
+            }
+        }
+    }
 }
 </script>
