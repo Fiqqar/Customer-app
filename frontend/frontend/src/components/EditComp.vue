@@ -60,7 +60,23 @@ export default {
             if (!this.customer.first_name || !this.customer.last_name || !this.customer.email) {
                 this.alert = "Please fill all required fields";
             }
-        }
+            else {
+                let updcustomer = {
+                    first_name : this.customer.first_name, 
+                    last_name : this.customer.last_name,
+                    email : this.customer.email,
+                    phone : this.customer.phone,
+                    city : this.customer.city,
+                    address : this.customer.address,
+                    state : this.customer.state
+                }
+                this.$http.put("http://localhost:8080/api/customer/update" + this.$route.params.id, updcustomer).then (function(response){
+                    this.$router.push({path: "/", query : {alert : "customer updated"}})
+                });
+                e.preventDefault();
+                
+            };
+            e.preventDefault();        }
     }
 }
 </script>
