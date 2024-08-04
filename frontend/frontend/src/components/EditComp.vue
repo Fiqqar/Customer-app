@@ -48,7 +48,7 @@
 <script>
 import Alert from './AlertComp'
 export default {
-    name: "editComp",
+    name: "EditComp",
     data () {
         return {
             alert : "",
@@ -56,6 +56,11 @@ export default {
         }
     },
     methods : {
+        getcustomer (id) {
+            this.$http.get("http://localhost:8080/api/customer/"+ id).then (function(response){
+                this.customer = response.body;
+            });
+        },
         updatecustomer (e) {
             if (!this.customer.first_name || !this.customer.last_name || !this.customer.email) {
                 this.alert = "Please fill all required fields";
@@ -76,7 +81,14 @@ export default {
                 e.preventDefault();
                 
             };
-            e.preventDefault();        }
+            e.preventDefault();        
+        }
+    },
+    created : function () {
+        this.getcustomer(this.$route.params.id)
+    },
+    components : {
+        Alert
     }
 }
 </script>

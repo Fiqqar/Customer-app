@@ -1,11 +1,58 @@
 <template>
-    <div>
-        <h1>Hello world</h1>
-    </div>
+<div class="customers container">
+    <Alert v-if="alert" v-bind:message="alert"/>
+    <h1 class="page-header">Manage Customers</h1>
+    <input placeholder="Enter last name" class="form-control" v-model="filterinput">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Phone</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="customer in filterby(customers, filterinput)">
+                <td>{{ customer.first_name }}</td>
+                <td>{{ customer.last_name }}</td>
+                <td>{{ customer.Phone }}</td>
+                <td><router-link class="btn btn-default" v-bind:to="'/customer/' + customer.id">View</router-link></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 </template>
 
 <script>
+import Alert from './AlertComp';
 export default {
-    name: "customersComp"
+    name: "customersComp",
+    data () {
+        return {
+            customers: [],
+            alert: "",
+            filterinput: ""
+        }
+    },
+    methods : {
+        getcustomer (id) {
+            this.$http.get("http://localhost:8080/api/customer/"+ id).then (function(response){
+                this.customer = response.body;
+            });
+        },
+        filterby (list, value) {
+            value = value.charAt(0).toUpperCase() + value.slice(1);
+            return list.filter(function(customer){
+                return customer.last_name.indexOf(value) > -1;
+            });
+        }
+    },
+    created : function () {
+        this.getcustomer(this.$route.params.id)
+    },
+    components : {
+        Alert
+    }
 }
 </script>
