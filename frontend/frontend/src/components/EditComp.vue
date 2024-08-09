@@ -81,7 +81,7 @@ export default {
                 e.preventDefault();
                 
             };
-            e.preventDefault();        
+            e.preventDefault();
         }
     },
     created : function () {

@@ -51,6 +51,9 @@ export default {
     created : function () {
         this.getcustomer(this.$route.params.id)
     },
+    updated : function () {
+        this.getcustomer(this.$route.params.id)
+    },
     components : {
         Alert
     }

@@ -56,17 +56,12 @@ export default {
         }
     },
     methods : {
-        getcustomer (id) {
-            this.$http.get("http://localhost:8080/api/customer/"+ id).then (function(response){
-                this.customer = response.body;
-            });
-        },
         addcustomer (e) {
             if (!this.customer.first_name || !this.customer.last_name || !this.customer.email) {
                 this.alert = "Please fill all required fields";
             }
             else {
-                let updcustomer = {
+                let newcustomer = {
                     first_name : this.customer.first_name, 
                     last_name : this.customer.last_name,
                     email : this.customer.email,
@@ -75,17 +70,14 @@ export default {
                     address : this.customer.address,
                     state : this.customer.state
                 }
-                this.$http.post("http://localhost:8080/api/customer/update" + this.$route.params.id, updcustomer).then (function(response){
-                    this.$router.push({path: "/", query : {alert : "customer updated"}})
+                this.$http.post("http://localhost:8080/api/customer/add", newcustomer).then (function(response){
+                    this.$router.push({path: "/", query : {alert : "customer added successfully"}})
                 });
                 e.preventDefault();
                 
             };
             e.preventDefault();        
         }
-    },
-    created : function () {
-        this.getcustomer(this.$route.params.id)
     },
     components : {
         Alert
