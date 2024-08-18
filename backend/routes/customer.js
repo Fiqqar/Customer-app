@@ -7,7 +7,7 @@ var db = mysql.createConnection({
     database: 'my_db2',
 });
 
-router.get('/list', (req, res) => {
+router.get('/:userid', (req, res) => {
     let query = "SELECT * FROM customer";
     db.query(query, (err, result, fields) => {
         if (err) throw err;
@@ -18,6 +18,12 @@ router.get('/list', (req, res) => {
         });
     });
 });
+
+
+
+
+
+
 
 router.post('/add', (req, res) => {
     let query = "INSERT INTO customer(first_name, last_name, phone, email, address, city, state) values(?)";

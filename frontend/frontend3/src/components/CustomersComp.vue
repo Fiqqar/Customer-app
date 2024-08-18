@@ -36,9 +36,9 @@ export default {
         }
     },
     methods : {
-        getcustomer (id) {
-            this.$http.get("http://localhost:8080/api/customer/"+ id).then (function(response){
-                this.customer = response.body;
+        getcustomer () {
+            this.$http.get("http://localhost:8080/api/customer/list").then (function(response){
+                this.customers = response.body.result;
             });
         },
         filterby (list, value) {
@@ -49,10 +49,10 @@ export default {
         }
     },
     created : function () {
-        this.getcustomer(this.$route.params.id)
+        this.getcustomer()
     },
     updated : function () {
-        this.getcustomer(this.$route.params.id)
+        this.getcustomer()
     },
     components : {
         Alert
