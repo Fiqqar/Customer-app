@@ -7,7 +7,7 @@ var db = mysql.createConnection({
     database: 'my_db2',
 });
 
-router.get('/:userid', (req, res) => {
+router.get('/list', (req, res) => {
     let query = "SELECT * FROM customer";
     db.query(query, (err, result, fields) => {
         if (err) throw err;
@@ -19,7 +19,25 @@ router.get('/:userid', (req, res) => {
     });
 });
 
-
+router.post('/:userid', (req, res) => {
+    let {id} = req.params; 
+    let query = `SELECT FROM customer where ID = '${id}'`;
+    if (!id) {
+        res.status(418).send({
+            message: `Customer not found ${id}`
+        });
+    }
+    if (id) {
+        db.query(query, (err, result, fields) => {
+            if (err) throw err;
+            res.json({
+                status: 200,
+                result ,
+                message: "customer list obtained successfully"
+            });
+        });
+    }
+});
 
 
 
