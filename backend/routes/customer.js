@@ -19,9 +19,21 @@ router.get('/list', (req, res) => {
     });
 });
 
-router.post('/:userid', (req, res) => {
-    let {id} = req.params; 
-    let query = `SELECT FROM customer where ID = '${id}'`;
+router.get('/userid', (req, res) => {
+    let params = req.query;
+    let id = params.id; 
+    let query = `SELECT * FROM customer where ID = ?`;
+    let values = [id];
+    db.query(query, values, (err, result) => {
+        if (err) throw err;
+        else {
+            res.json({
+                status: 200,
+                result,
+                message: "customer found successfully"
+            });
+        }
+    })
     if (!id) {
         res.status(418).send({
             message: `Customer not found ${id}`

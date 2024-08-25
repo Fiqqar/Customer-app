@@ -16,7 +16,7 @@
             <tr v-for="customer in filterby(customers, filterinput)">
                 <td>{{ customer.first_name }}</td>
                 <td>{{ customer.last_name }}</td>
-                <td>{{ customer.Phone }}</td>
+                <td>{{ customer.phone }}</td>
                 <td><router-link class="btn btn-default" v-bind:to="'/customer/' + customer.id">View</router-link></td>
             </tr>
         </tbody>
